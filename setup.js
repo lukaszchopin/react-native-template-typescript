@@ -1,29 +1,35 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require("fs");
+const path = require("path");
 
-const packageJson = require('./package.json')
-const jestConfig = require('./jest.json')
+const packageJson = require("./package.json");
+const jestConfig = require("./jest.json");
 
 if (!packageJson.jest) {
-  process.exit()
+  process.exit();
 }
 
-const deleteFile = fileName => fs.unlinkSync(path.join(__dirname, fileName))
-const writeFile = (fileName, data) => fs.writeFileSync(path.join(__dirname, fileName), data)
+const deleteFile = fileName => fs.unlinkSync(path.join(__dirname, fileName));
+const writeFile = (fileName, data) =>
+  fs.writeFileSync(path.join(__dirname, fileName), data);
 
-console.log('🔄 Setting up...')
+console.log("🔄 Setting up...");
 
-packageJson.scripts.tsc = 'tsc'
-packageJson.jest = Object.assign(packageJson.jest, jestConfig)
+packageJson.scripts.tsc = "tsc";
+packageJson.jest = Object.assign(packageJson.jest, jestConfig);
 
-writeFile('package.json', JSON.stringify(packageJson, null, 2))
+writeFile("package.json", JSON.stringify(packageJson, null, 2));
+const projectFilesToDelete = [".flowconfig", "App.js", "__tests__/App-test.js"];
+const templateFilesToDelete = [
+  "setup.js",
+  "README.md",
+  "LICENSE",
+  "jest.json",
+  "CODE_OF_CONDUCT.md",
+  "CONTRIBUTING.md",
+  "ISSUE_TEMPLATE.md"
+];
 
-deleteFile('.flowconfig')
-deleteFile('App.js')
-deleteFile('__tests__/App.js')
-deleteFile('jest.json')
-deleteFile('LICENSE')
-deleteFile('README.md')
-deleteFile('setup.js')
+projectFilesToDelete.forEach(deleteProjectFile);
+templateFilesToDelete.forEach(deleteTemplateFile);
 
-console.log(`✅ Setup completed!`)
+console.log(`✅ Setup completed!`);
