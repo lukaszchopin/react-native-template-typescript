@@ -29,7 +29,7 @@ const templateFilesToDelete = [
   "ISSUE_TEMPLATE.md"
 ];
 
-projectFilesToDelete.forEach(deleteProjectFile);
-templateFilesToDelete.forEach(deleteTemplateFile);
+projectFilesToDelete.forEach(deleteFile);
+templateFilesToDelete.forEach(deleteFile);
 
 console.log(`✅ Setup completed!`);
