@@ -18,7 +18,7 @@ packageJson.scripts.tsc = "tsc";
 packageJson.jest = Object.assign(packageJson.jest, jestConfig);
 
 writeFile("package.json", JSON.stringify(packageJson, null, 2));
-const projectFilesToDelete = [".flowconfig", "App.js", "__tests__/App-test.js"];
+const projectFilesToDelete = [".flowconfig", "App.js", "__tests__/App.js"];
 const templateFilesToDelete = [
   "setup.js",
   "README.md",
