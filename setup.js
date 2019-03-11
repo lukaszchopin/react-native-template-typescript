@@ -22,7 +22,6 @@ const projectFilesToDelete = [
   ".flowconfig",
   "App.js",
   "__tests__/App.js",
-  ".travis.yml",
   ".buckconfig"
 ];
 const templateFilesToDelete = [
