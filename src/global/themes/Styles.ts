@@ -10,6 +10,14 @@ const Styles = StyleSheet.create({
         paddingTop: Metrics.paddingTop,
         paddingBottom: Metrics.paddingBottom,
     },
+    screenContainer: {
+        flex: 1,
+        backgroundColor: Colors.white,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingTop: Metrics.paddingTop,
+        paddingBottom: Metrics.paddingBottom,
+    },
 });
 
 export default Styles;
