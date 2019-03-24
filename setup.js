@@ -1,30 +1,14 @@
 const fs = require("fs");
 const path = require("path");
 
-const packageJson = require("./package.json");
-const jestConfig = require("./jest.json");
-
-if (!packageJson.jest) {
-  process.exit();
-}
-
-const deleteFile = fileName => fs.unlinkSync(path.join(__dirname, fileName));
-const writeFile = (fileName, data) =>
-  fs.writeFileSync(path.join(__dirname, fileName), data);
-
-console.log("🔄 Setting up...");
-
-packageJson.scripts.tsc = "tsc";
-packageJson.jest = Object.assign(packageJson.jest, jestConfig);
-
-writeFile("package.json", JSON.stringify(packageJson, null, 2));
-const projectFilesToDelete = [
+const projectFilesToDeleteCustom = [
   ".flowconfig",
   "App.js",
   "__tests__/App.js",
   ".buckconfig"
 ];
-const templateFilesToDelete = [
+
+const templateFilesToDeleteCustom = [
   "setup.js",
   "README.md",
   "LICENSE",
@@ -34,7 +18,25 @@ const templateFilesToDelete = [
   "ISSUE_TEMPLATE.md"
 ];
 
-projectFilesToDelete.forEach(deleteFile);
-templateFilesToDelete.forEach(deleteFile);
+if (fs.existsSync(path.join(__dirname, '.travis.yml'))) {
+  process.exit()
+}
 
-console.log(`✅ Setup completed!`);
+const projectFilesToDelete = ['.flowconfig', 'App.js', '__tests__/App-test.js']
+
+const templateFilesToDelete = ['setup.js', 'README.md', 'LICENSE']
+
+const deleteFile = filePath => {
+  if (!fs.existsSync(filePath)) {
+    return
+  }
+
+  fs.unlinkSync(filePath)
+}
+
+const projectPath = path.join(__dirname, '..', '..')
+const deleteProjectFile = fileName => deleteFile(path.join(projectPath, fileName))
+const deleteTemplateFile = fileName => deleteFile(path.join(__dirname, fileName))
+
+projectFilesToDelete.forEach(deleteProjectFile)
+templateFilesToDelete.forEach(deleteTemplateFile)
