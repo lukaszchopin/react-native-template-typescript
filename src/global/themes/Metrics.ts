@@ -1,4 +1,4 @@
-import { Dimensions, Platform, PixelRatio } from 'react-native';
+import { Dimensions } from 'react-native';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 
 const { width, height } = Dimensions.get('window');
@@ -11,8 +11,8 @@ const screen = {
 };
 
 const metrics = {
-		screenHeight: screen.screenHeight,
-		screenWidth: screen.screenWidth,
+    screenHeight: screen.screenHeight,
+    screenWidth: screen.screenWidth,
     paddingTop: getStatusBarHeight(),
     paddingBottom: getBottomSpace(),
 };
