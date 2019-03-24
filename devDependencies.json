@@ -3,7 +3,6 @@
     "@types/react-native": "latest",
     "@types/react-test-renderer": "latest",
     "@types/react": "latest",
-    "ts-jest": "latest",
     "typescript": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",

@@ -1,30 +1,26 @@
 const fs = require("fs");
 const path = require("path");
 
-const projectFilesToDeleteCustom = [
-  ".flowconfig",
-  "App.js",
-  "__tests__/App.js",
-  ".buckconfig"
-];
-
-const templateFilesToDeleteCustom = [
-  "setup.js",
-  "README.md",
-  "LICENSE",
-  "jest.json",
-  "CODE_OF_CONDUCT.md",
-  "CONTRIBUTING.md",
-  "ISSUE_TEMPLATE.md"
-];
-
 if (fs.existsSync(path.join(__dirname, '.travis.yml'))) {
   process.exit()
 }
 
-const projectFilesToDelete = ['.flowconfig', 'App.js', '__tests__/App-test.js']
+const projectFilesToDelete = [
+	'.flowconfig', 
+	'App.js', 
+	'__tests__/App-test.js', 
+	'.buckconfig',
+	'.watchmanconfig'
+]
 
-const templateFilesToDelete = ['setup.js', 'README.md', 'LICENSE']
+const templateFilesToDelete = [
+	'setup.js', 
+	'README.md', 
+	'LICENSE', 
+	'CODE_OF_CONDUCT.md',
+	'CONTRIBUTING.md',
+  'ISSUE_TEMPLATE.md'
+]
 
 const deleteFile = filePath => {
   if (!fs.existsSync(filePath)) {
