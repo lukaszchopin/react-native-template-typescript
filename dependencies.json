@@ -1,6 +1,7 @@
 {
     "react-native-iphone-x-helper": "latest",
-    "mobx": "5.9.0",
-    "mobx-persist": "0.4.1",
-    "mobx-react": "5.4.3"
+    "mobx": "latest",
+    "mobx-persist": "latest",
+    "mobx-react": "latest",
+    "react-navigation": "latest"
 }

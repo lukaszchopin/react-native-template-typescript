@@ -17,8 +17,15 @@ export default class AppStore extends BaseStore {
         this.setEventListeners();
         const {
             authStore: { hydrateAuth },
+            navigationStore: { navigate },
         } = this.rootStore.stores;
-        hydrateAuth();
+        hydrateAuth()
+            .then(result => {
+                setTimeout(() => {
+                    navigate('Home');
+                }, 2000);
+            })
+            .catch(err => {});
     };
 
     @action

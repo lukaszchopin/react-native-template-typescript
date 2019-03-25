@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { inject } from 'mobx-react';
 import { AppStyles } from './global/themes';
-import Home from './containers';
 import withStoreProvider from './enhancers';
 import RootStore, { Stores } from './stores/RootStore';
 import AppStore from './stores/AppStore';
+import Router from './routers';
+import NavigationStore from './stores/NavigationStore';
 
 interface Props {
     appStore: AppStore;
+    navigationStore: NavigationStore;
 }
 
 @withStoreProvider(new RootStore())
 @inject((allStores: Stores) => ({
     appStore: allStores.appStore,
+    navigationStore: allStores.navigationStore,
 }))
 class App extends Component<Props> {
     componentDidMount() {
@@ -31,9 +34,12 @@ class App extends Component<Props> {
     }
 
     render() {
+        const {
+            navigationStore: { setNavigator, onNavigationStateChange },
+        } = this.props;
         return (
             <View style={AppStyles.mainContainer}>
-                <Home />
+                <Router ref={setNavigator} onNavigationStateChange={onNavigationStateChange} />
             </View>
         );
     }
