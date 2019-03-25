@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import { inject } from 'mobx-react';
 import { AppStyles } from './global/themes';
 import Home from './containers';
+import withStoreProvider from './enhancers';
+import RootStore, { Stores } from './stores/RootStore';
+import AppStore from './stores/AppStore';
 
-class App extends Component {
+interface Props {
+    appStore: AppStore;
+}
+
+@withStoreProvider(new RootStore())
+@inject((allStores: Stores) => ({
+    appStore: allStores.appStore,
+}))
+class App extends Component<Props> {
     componentDidMount() {
-        console.log('App did mount');
+        const {
+            appStore: { onAppStarted },
+        } = this.props;
+        onAppStarted();
     }
 
     componentWillUnmount() {
-        console.log('App will unmount');
+        const {
+            appStore: { onAppFinished },
+        } = this.props;
+        onAppFinished();
     }
 
     render() {
