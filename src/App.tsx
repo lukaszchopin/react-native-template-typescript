@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { inject } from 'mobx-react';
+import { withDevMenuTrigger } from 'react-native-devmenu-trigger';
 import { AppStyles } from './global/themes';
 import withStoreProvider from './enhancers';
 import RootStore, { Stores } from './stores/RootStore';
@@ -13,6 +14,7 @@ interface Props {
     navigationStore: NavigationStore;
 }
 
+@withDevMenuTrigger
 @withStoreProvider(new RootStore())
 @inject((allStores: Stores) => ({
     appStore: allStores.appStore,
