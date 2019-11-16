@@ -1,9 +1,0 @@
-{
-    "react-native-iphone-x-helper": "latest",
-    "mobx": "latest",
-    "mobx-persist": "latest",
-    "mobx-react": "latest",
-    "react-navigation": "latest",
-    "react-native-gesture-handler": "latest",
-    "react-native-devmenu-trigger": "1.1.0"
-}
